@@ -1,0 +1,17 @@
+<main>
+  <div>
+    <h2>WebSocket Chat</h2>
+  </div>
+  <div class="name-field-enter-chat-button">
+      <input #inputName type="text" class="name-field"
+          (keyup.enter)="onEnterButtonClicked(inputName.value)"
+          placeholder="Digite seu nome"
+          [class.input-field-error] = "hasInpurError"  />
+      <p class="user-name-error-message" *ngIf="hasInpurError">
+          Insira um nome de usuário, por favor.
+      </p>
+      <div class="enter-chat-button">
+        <button class="button-enter" (click) = "onEnterButtonClicked(inputName.value)" role="button">Entrar no chat</button>
+      </div>
+  </div>
+</main>

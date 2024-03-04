@@ -1,0 +1,30 @@
+<main>
+  <div #messagesContainer class="messages-container" *ngIf = "liveChatOn">
+      <div class="message" *ngFor="let message of chatMessages"
+          [class.right-side-message] = "message.type === messageTypeEnumRef.CurrentUserMessage"
+          [class.center-side-message] = "message.type === messageTypeEnumRef.ChatActions">
+
+          <div class="message-content"
+              [class.message-content-right-side] = "message.type === messageTypeEnumRef.CurrentUserMessage"
+              [class.action-message]="message.type === messageTypeEnumRef.ChatActions">
+              <p> {{ message.content }} </p>
+          </div>
+          <p class="user-name" *ngIf = "message.type !== messageTypeEnumRef.ChatActions"
+              [class.user-name-right-side] = "message.type === messageTypeEnumRef.CurrentUserMessage">
+              {{ message.userName }}
+          </p>
+      </div>
+  </div>
+
+  <div class="new-message-container" *ngIf = "liveChatOn">
+      <div class="leave-chat-btn" (click)="leaveChatAsync()" >
+      </div>
+      <textarea class="new-message-field" placeholder="Escreva uma mensagem . . ."
+      [(ngModel)]="currentMessage" (keydown.enter)="sendNewMessage(currentMessage)"></textarea>
+      <button [disabled]="currentMessage == ''"
+      (click)="sendNewMessage(currentMessage)"
+      [ngClass]="{'send-message-btn-enabled': currentMessage.trim() != '', 'send-message-btn-disabled': currentMessage.trim() == ''}"
+      >Enviar</button>
+  </div>
+
+</main>
