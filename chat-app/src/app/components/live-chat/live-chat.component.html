@@ -1,4 +1,7 @@
 <main>
+  <div class="div-exit" >
+    <button class="leave-chat-btn" (click)="leaveChatAsync()">Sair</button>
+  </div>
   <div #messagesContainer class="messages-container" *ngIf = "liveChatOn">
       <div class="message" *ngFor="let message of chatMessages"
           [class.right-side-message] = "message.type === messageTypeEnumRef.CurrentUserMessage"
@@ -17,8 +20,6 @@
   </div>
 
   <div class="new-message-container" *ngIf = "liveChatOn">
-      <div class="leave-chat-btn" (click)="leaveChatAsync()" >
-      </div>
       <textarea class="new-message-field" placeholder="Escreva uma mensagem . . ."
       [(ngModel)]="currentMessage" (keydown.enter)="sendNewMessage(currentMessage)"></textarea>
       <button [disabled]="currentMessage == ''"

@@ -8,6 +8,7 @@ main {
   align-items: center;
   flex-direction: column;
   margin-bottom: 40px;
+  font-family: Arial;
 }
 
 .name-field-enter-chat-button {
@@ -80,4 +81,8 @@ main {
   .button-enter {
     padding: 10px 30px;
   }
+}
+
+h2 {
+  color: #13aa52;
 }

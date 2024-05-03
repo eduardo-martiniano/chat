@@ -44,7 +44,8 @@ export class LiveChatService {
     public leaveChatAsync(): Promise<void> {
         return this._hubConnection.send('OnExitChatAsync', this.CurrentUserName)
                 .then(() => {
-                    this._hubConnection.stop();
+                  localStorage.clear();
+                  this._hubConnection.stop();
                 });
     }
 

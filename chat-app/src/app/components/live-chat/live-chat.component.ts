@@ -68,6 +68,11 @@ export class LiveChatComponent implements OnInit, AfterViewChecked {
         });
     }
 
+    public exitChat(): void {
+      // this._liveChatService.
+      this._router.navigate(['']);
+    }
+
     private scrollPageToBottom(): void {
         this._messagesContainer.nativeElement.scrollTop =
         this._messagesContainer.nativeElement.scrollHeight;

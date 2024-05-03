@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router, NavigationExtras } from '@angular/router';
 import { LiveChatService } from '../../services/live-chat-service';
+import { WindowUnloadService } from 'src/app/services/window-unload.service';
 
 
 @Component({
@@ -14,10 +15,16 @@ export class HomeComponent {
     private _router: Router;
     private _hasInputError: boolean;
 
-    constructor(router: Router, liveChatService: LiveChatService) {
+    constructor(router: Router, liveChatService: LiveChatService, private windowUnloadService: WindowUnloadService) {
         this._router = router;
         this._liveChatService = liveChatService;
         this._hasInputError = false;
+    }
+
+    ngOnInit(): void {
+      this.windowUnloadService.getUnloadEvent().subscribe(() => {
+        this._liveChatService.leaveChatAsync();
+      });
     }
 
     public get hasInpurError(): boolean{
