@@ -1,6 +1,6 @@
 ﻿using chat_api.Interfaces;
 using Microsoft.AspNetCore.SignalR;
-using System.Text.RegularExpressions;
+using System;
 
 namespace chat_api.Hubs
 {
@@ -14,7 +14,7 @@ namespace chat_api.Hubs
             await Groups.AddToGroupAsync(Context.ConnectionId, LIVE_CHAT_GROUP);
         }
 
-        public override async Task OnDisconnectedAsync(System.Exception exception)
+        public override async Task OnDisconnectedAsync(Exception exception)
         {
             await Groups.RemoveFromGroupAsync(Context.ConnectionId, LIVE_CHAT_GROUP);
         }
